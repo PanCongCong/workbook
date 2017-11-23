@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css" />
+	</head>
+
+	<body>
+		<div class="header">
+			<div class="title">布局</div>
+			<ul class="toolbar">
+				<li>
+					<a href="index.html">布局</a>
+				</li>
+				<li>
+					<a href="index.html">JS基础</a>
+				</li>
+				<li>
+					<a href="index.html">ES6</a>
+				</li>
+			</ul>
+		</div>
+		<div class="side">
+			<ul>
+				<li>
+					<a href="#part1">水平居中</a>
+				</li>
+				<li>
+					<a href="#part2">垂直居中</a>
+				</li>
+				<li>
+					<a href="#part3">水平垂直居中</a>
+				</li>
+				<li>
+					<a href="#part4">多列布局</a>
+				</li>
+			</ul>
+		</div>
+		<div class="content">
+			<div class="info" style="color: #333333;">
+				以下实例部分，<span class="bg1">父元素背景色为紫色</span>，<span class="bg2">子元素背景为灰色(若存在)</span>
+			</div>
+
+			<div class="section" id="part1">
+				<h1>水平居中</h1>
+				<h2>
+					利用 inline-block + text-align 实现
+				</h2>
+				<p class="code">
+					.parent { text-align : center }
+					<br> .child { display : inline-block }
+				</p>
+				<div class="demo">
+					<div class="bg1" style="text-align: center;">
+						<div class="bg2" style="display: inline-block;">
+							inline-block + text-align
+							<br> 优点：兼容性好
+							<br> 缺点：需要同时设置父元素和子元素
+						</div>
+					</div>
+				</div>
+				<h2>
+					利用 margin 实现
+				</h2>
+				<p class="code">
+					.child { margin : 0 auto ; width : 200px }
+				</p>
+				<div class="demo">
+					<div class="bg1" style="width: 50%;margin: auto;">
+						margin
+						<br> 优点：兼容性好
+						<br /> 缺点：需要指定宽度
+					</div>
+				</div>
+				<h2>
+					利用 table 实现
+				</h2>
+				<p class="code">
+					.child { display : table ; margin : 0 auto }
+				</p>
+				<div class="demo">
+					<div class="bg1" style="display: table;margin: 0 auto;">
+						table
+						<br />优点：只需要针对自身设置
+						<br />缺点：ie6,7不支持，需要调整结构(未验证)
+					</div>
+				</div>
+				<h2>
+					利用 绝对定位 实现
+				</h2>
+				<p class="code">
+					//方案1：先向右平移 50%，然后向左平移自身宽度的50%；
+					<br /> //方案1.1：margin-left:-50px; 50指元素宽度的一半，此方案不推荐
+					<br /> //方案1.2：transform : translate(-50%); 利用transform的百分比是针对当前元素宽度的特性
+					<br /> .parent { position : relative }
+					<br /> .child { position : absoult ; left : 50% ; transform : translate(-50%) }
+					<br />
+					<br /> //方案2：利用绝对定位拉伸，以及margin:auto会分配剩余空间特性
+					<br /> .parent { position:relative }
+					<br /> .child { position:absoult ; left:0 ; right:0 ; margin:0 auto }
+				</p>
+				<div class="demo">
+					<div class="bg1" style="position: relative;height: 100px;">
+						<div class="bg2" style="position: absolute;left: 50%;transform: translate(-50%);">
+							方案1：
+							<br /> 先向右平移 50%，然后向左平移自身宽度的50%；
+							<br /> 优点：不需要知道父元素宽度
+							<br /> 缺点：IE9以下不兼容
+						</div>
+					</div>
+
+					<div class="bg1" style="position: relative; height: 110px;">
+						<div class="bg2" style="position: absolute; left: 0; right: 0; margin: 0 auto;width: 50%;">
+							方案2：
+							<br /> 利用绝对定位拉伸，以及margin:auto是指分配剩余空间特性
+							<br /> 优点：兼容性好；子元素支持百分比宽度
+							<br /> 缺点：需要指定子元素宽度；但与方案1.1，以及margin方案相比，支持百分比宽度
+						</div>
+					</div>
+				</div>
+				<div class="info">
+					注意：对于父元素来说，绝对定位子元素没有宽高，故无法撑起父元素（坍塌）
+				</div>
+
+				<h2>利用 flex 实现</h2>
+				<p class="code">
+					//方案1
+					<br /> .parent{ display:flex ; justify-content:center }
+					<br />
+					<br /> //方案2
+					<br /> .parent{ display:flex }
+					<br /> .child{ margin:0 auto; }
+				</p>
+				<div class="demo">
+					<div class="bg1" style="display: flex;justify-content: center;">
+						方案1
+						<br /> 缺点：兼容性
+					</div>
+					<br />
+					<div class="bg1" style="display: flex; ">
+						<div class="bg2" style="margin: 0 auto;">
+							方案2<br /> 这是child，灰色
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="section" id="part2">
+				<h1>
+					垂直居中
+				</h1>
+				<h2>利用 vertical-align 实现</h2>
+				<p class="code">
+					//方案1
+					<br /> .parent { display:table-cell ; vertical-align:middle ; height:20px }
+					<br />
+					<br /> //方案2
+					<br /> .parent{ display:inline-block ; vertical-align:middle ; line-height:20px }
+				</p>
+				<div class="demo">
+					<div class="bg1" style="display: table-cell;vertical-align: middle;height: 80px;">
+						利用table-cell
+						<br /> 换行无问题
+					</div>
+					<div class="bg1" style="display: inline-block;vertical-align: middle;line-height: 80px;margin-top: 10px;font-size: 0px;">
+						<span class="bg2" style="font-size: 0.8rem;">父元素font-size为0；行高80；最终父元素高度：86px</span>
+					</div>
+					<div class="bg1" style="display: inline-block;vertical-align: middle;line-height: 80px;margin-top: 10px;font-size: 0.8rem;">
+						<span class="bg2">父元素font-size为0.8rem(16px)；行高80；最终父元素高度：80px</span>
+					</div>
+					<br />
+					<div class="bg1" style="display: inline-block;vertical-align: middle;line-height: 80px;margin-top: 10px;">
+						<span>
+							方案2
+							<br />
+							换行会有问题
+						</span>
+					</div>
+				</div>
+
+				<h2>利用 绝对定位 实现</h2>
+				<p class="code">
+					.parent{ position:relative; }
+					<br /> .child{ position:absolute ; top:50% ; transform:translate(0,-50%) }
+				</p>
+				<div class="demo">
+					<div class="bg1" style="position: relative;height: 100px;">
+						<div class="bg2" style="position: absolute;top: 50%;transform: translate(0,-50%);">
+							绝对定位方案
+							<br /> 换行
+						</div>
+					</div>
+				</div>
+				<h2>利用 flex 实现</h2>
+				<p class="code">
+					.parent{ display:flex; ailgn-items:center }
+				</p>
+				<div class="demo">
+					<div class="bg1" style="display: flex;align-items: center; height: 100px;">
+						利用flex实现
+						<br /> 换行
+					</div>
+				</div>
+				<div class="demo">
+					<div class="bg1" style="display: flex; height: 100px;">
+						<div class="bg2" style="margin: auto 0;">
+							利用flex实现 + margin:auto实现
+							<br /> 换行
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="section" id="part3">
+				<h1>水平垂直居中</h1>
+				<h2>利用 vertical-align + text-align + inline-block 实现</h2>
+				<p class="code">
+					.parent{ display:table-cell ; vertical-align:middle ; text-align:center }
+					<br /> .child{ display:inline-block }
+				</p>
+				<div class="demo">
+					<div class="bg1" style="display: table-cell;text-align: center;vertical-align: middle;height: 100px;width:300px">
+						<div class="bg2" style="display: inline-block;">
+							水平垂直居中
+							<br /> 换行
+						</div>
+					</div>
+				</div>
+				<div class="info">
+					注意：table-cell是特殊的inline，宽高受内部元素影响，不支持width:100%,height:100%
+				</div>
+
+				<h2>利用 绝对定位 实现</h2>
+				<p class="code">
+					.parent{ position:relative }
+					<br /> .child{ position:absolute ; top:50% ; left:50% ; transform:translate(-50%,-50%) }
+				</p>
+				<div class="demo">
+					<div class="bg1" style="position: relative;height: 300px;width: 300px;resize: horizontal;overflow: hidden;">
+						<div class="bg2" style="position: absolute;top: 50%;left: 50%; transform: translate(-50%,-50%);">
+							绝对定位实现，容器过窄时会溢出
+							<br /> transform:translate(-50%,-50%)
+						</div>
+					</div>
+				</div>
+				<div class="demo">
+					<div class="bg1" style="position: relative;height: 300px;width:300px;resize: horizontal;overflow: hidden;">
+						<div class="bg2" style="position: absolute;top: 0;left: 0; right: 0; bottom: 0; width: 50%; height: 50%;margin: auto;">
+							利用绝对定位拉伸，配合margin
+							<br /> 需要确定宽高，支持百分比
+						</div>
+					</div>
+				</div>
+
+				<h2>利用 flex 实现</h2>
+				<p class="code">
+					.parent{ display:flex ; justify-content:center ; align-items:center }
+				</p>
+				<div class="demo">
+					<div class="bg1" style="display: flex;justify-content: center;align-items: center;height: 100px;">
+						flex
+						<br /> 换行
+					</div>
+				</div>
+			</div>
+
+			<div class="section" id="part4">
+				<h1>多列布局</h1>
+				<h2>利用 float + margin 实现</h2>
+				<p class="code">
+					.left{ float:left ; width:100px }
+					<br /> .right{ margin-left:100px }
+				</p>
+				<div class="demo">
+					<div class="bg1" style="float: left; width: 100px;height: 100px; ">
+						左定宽
+					</div>
+					<div class="bg2" style="float: left; width: 100px;height: 100px; ">
+						左定宽
+					</div>
+					<div class="bg4" style="width: 100px; float: right;height: 100px;">
+						右定宽(注意文档顺序)
+					</div>
+					<div class="bg3" style="margin-left: 200px;margin-right: 100px;height: 100px; ">
+						自适应
+					</div>
+				</div>
+				<div class="demo fix">
+					<!--<div class="bg1" style="float: left; width: 100px;height: 100px; ">
+						左定宽
+					</div>-->
+					
+					<div class="bg3" style="float:left;margin-right: -100px;width:100%;height: 120px; ">
+						自适应（方案二：float:left;margin-right: -200px;width:100%; 实际上宽度未自适应）
+						<br />
+						<br />
+						123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789
+						<br />
+						测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
+					</div>
+					<div class="bg4" style="width: 100px; float: right;height: 120px;">
+						右定宽
+					</div>
+				</div>
+				<div class="info">
+					注意：ie6下会有3px的bug
+				</div>
+				<h2>利用 float + margin(fix) 实现</h2>
+				<p class="code">
+					.left{ width:100px ; float:left }
+					<br /> .right-fix{ float:right ; width:100% ; margin-left:-100px }
+					<br /> .right{ margin-left:100px }
+				</p>
+				<div class="demo">
+					<div class="fix" class="bg1">
+						<div class="bg2" style="float: left;width: 100px;height: 100px;">
+							这是左侧
+						</div>
+						<div class="bg3" style="float: right;margin-left: -100px;width: 100%;height: 100px;">
+							<div class="bg4" style="margin-left: 100px;">
+								这是右侧
+								<br /> 这种方式貌似没什么卵用，且右侧背景色会遮住左侧
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<h2>利用BFC实现</h2>
+				<p class="code">
+					.left{ float:left ; width:100px } .right{ overflow:hidden; }
+				</p>
+				<div class="demo fix">
+					<div class="bg1" style="float: left;height: 100px;width: 100px;">
+						左定宽
+					</div>
+					<div class="bg2" style="float: left;height: 100px;width: 100px;">
+						左定宽
+					</div>
+					<div class="bg2" style="float: right;height: 100px;width: 100px;">
+						右定宽
+					</div>
+					<div class="bg3" style="overflow: hidden;height: 100px;">
+						这是右侧，另外还可使用此方法实现等高布局，看不懂
+					</div>
+				</div>
+				<div class="info">
+					以下会触发BFC（块状格式化上下文）:
+					<br /> 1、float的值不为none。
+					<br /> 2、overflow的值为auto,scroll或hidden。
+					<br /> 3、display的值为table-cell, table-caption, inline-block中的任何一个。
+					<br /> 4、position的值不为relative和static。
+					<br />
+					<br /> BFC特性：
+					<br /> 1、在BFC中，内部的Box会在垂直方向，一个接一个地放置；
+					<br /> 2、Box垂直方向的距离由margin决定，同一个BFC下相邻两个Box的margin会发生重叠；（不同BFC下的元素margin不重叠，故可解决垂直方向margin重叠问题）
+
+					<br /> 3、在BFC中，每一个盒子的左外边缘（margin-left）会触碰到容器的左边缘(border-left)（对于从右到左的格式来说，则触碰到右边缘），即使存在浮动也是如此。即不会发生margin穿透
+					<br /> 4、形成了BFC的区域不会与float box重叠（可阻止因浮动元素引发的文字环绕现象；可实现两栏自适应布局）；
+					<br /> 5、计算BFC高度时，浮动元素也参与计算（BFC会确切包含浮动的子元素，即闭合浮动；父元素BFC可实现清除浮动）。
+				</div>
+				
+				<h2>使用 table 实现</h2>
+				<p class="code">
+					.parent{ display:table ; table-layout:fixed ; width:100% }
+					<br />
+					.left{ width:100px }
+					<br />
+					.right,.left{ display:table-cell }
+				</p>
+				<div class="demo">
+					<div class="bg1" style="display: table;table-layout: fixed;width: 100%;">
+						<div class="bg2" style="width: 100px;height: 100px; display: table-cell;resize:vertical;overflow: hidden;">
+							左定宽
+						</div>
+						<div class="bg3" style="display: table-cell;">这是右侧，可实现等高布局</div>
+						<div class="bg4" style="display: table-cell;width: 100px;">右定宽</div>
+					</div>
+				</div>
+				
+				<h2>利用 flex 实现</h2>
+				<p class="code">
+					.parent{ display:flex }
+					<br />
+					.left{ width:100px }
+					<br />
+					.right{ flex:1 }
+				</p>
+				<div class="demo">
+					<div class="bg1" style="display: flex;">
+						<div class="bg2" style="width: 100px;height: 100px;resize: vertical;overflow: hidden">
+							左定宽
+						</div>
+						<div class="bg3" style="flex: 1;">
+							自适应，可实现等高布局
+						</div>
+						<div class="bg4" style="width: 100px;height: 100px;">
+							右定宽
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

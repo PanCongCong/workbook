@@ -1,0 +1,165 @@
+html,body{
+	height: 100%;
+	font-family: "微软雅黑";
+	color: #333;
+	font-size: 20px;
+	margin: 0;
+}
+p{
+	margin: 0.4rem 0 0.2rem;
+	font-size: 0.8rem;
+}
+div{
+	font-size: 0.8rem;
+}
+h1,h2,h3{
+	margin: 0px;
+}
+h1{
+	font-size: 1.6rem;
+	padding: 0.8rem 0 0.4rem;
+}
+h2{
+	font-size: 1.2rem;
+	margin: 0.6rem 0 0.2rem;
+}
+a{
+	text-decoration: none;
+	color: inherit;
+}
+ul{
+	list-style: none;
+	display: inline-block;
+	padding: 0px;
+	margin: 0px;
+}
+.bg1{
+	background-color: #CDBFE3;
+}
+.bg2{
+	background-color: #99CCFF;
+}
+.bg3{
+	background-color: #669999;
+}
+.bg4{
+	background-color: #6699CC;
+}
+.bg5{
+	background-color: #996666;
+}
+.bg6{
+	background-color: #99CC99;
+}
+.fix:after{
+	content: "";
+	display: table;
+	clear: both;
+}
+.header{
+	height: 3rem;
+	padding: 0.2rem 5% 0;
+	background-color: #6f5499;
+}
+.header .title{
+	display: inline-block;
+	color: #fff;
+	font-size: 1rem;
+	padding-right: 1rem;
+}
+.header .toolbar{
+	font-size: 0.8rem;
+}
+.header .toolbar li{
+	display: inline-block;
+	color: #cdbfe3;
+	padding: 0 0.8rem;
+}
+.header .toolbar li:hover{
+	color: #fff;
+}
+.side{
+	position: absolute;
+	width: 10rem;
+	top: 3.2rem;
+	left: 0;
+	bottom: 0;
+	text-align: right;
+	font-size: 0.8rem;
+	color: #767676;
+	border-right: 1px solid #eee;
+}
+.side ul{
+	margin-top: 0.6rem;
+	margin-right: 0.6rem;
+}
+.side ul li:hover{
+	color: #6f5499;
+	position: relative;
+}
+.side ul li:hover:after{
+	content: "";
+	display: block;
+	position: absolute;
+	right: -10px;
+	top: 0;
+	bottom: 0;
+	width: 0.2rem;
+	background-color: #6f5499;
+}
+.content{
+	position: absolute;
+	top: 3.2rem;
+	left: 10rem;
+	right: 0;bottom: 0;
+	margin-left: 0.2rem;
+	overflow: auto;
+}
+.section{
+	padding: 0.6rem;
+}
+.section h1{
+	border-bottom: 1px solid #EEEEEE;
+}
+.section h1:after{
+	content: ".";
+	padding-left: 0.3rem;
+}
+.section h1:before{
+	content: ".";
+	padding-right: 0.3rem;
+}
+.section h2:after{
+	content: "..";
+	padding-left: 0.2rem;
+}
+.section h2:before{
+	content: "..";
+	padding-right: 0.2rem;
+}
+.section .code,.section .demo{
+	background-color: #F7F7F9;
+	padding: 0.2rem 0.2rem 0.6rem;
+	margin: 0.5rem 0;
+	border: 1px solid #E1E1E8;
+	border-radius: 0.2rem;
+}
+.section .code:before,.section .demo:before{
+	display: block;
+	font-size: 0.8rem;
+	color: #ccc;
+}
+.section .code:before{
+	content: "代码";
+}
+.section .demo:before{
+	content: "实例";
+}
+.info{
+	color: #6F5499;
+	padding: 0.6rem;
+	margin: 0.6rem;
+	border: 1px solid #EEEEEE;
+	border-left: 0.2rem solid #6F5499;
+	border-radius: 2px;
+}
