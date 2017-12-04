@@ -36,6 +36,9 @@
 				<li>
 					<a href="#part4">多列布局</a>
 				</li>
+				<li>
+					<a href="#part5">完整布局</a>
+				</li>
 			</ul>
 		</div>
 		<div class="content">
@@ -396,6 +399,39 @@
 						</div>
 						<div class="bg4" style="width: 100px;height: 100px;">
 							右定宽
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="section" id="part5">
+				<h1>完整布局</h1>
+				<h2>利用绝对定位布局</h2>
+				<div class="demo">
+					<div style="position: relative;height: 600px;padding: 5px;padding-top: 15px;" class="bg0">
+						这是父容器，position为relative或absolute或fixed
+						<div style="height: 100px;" class="bg1">
+							这是顶部，高度100px
+						</div>
+						<div style="position: absolute;left: 5px;top:115px;bottom: 5px;width: 200px;" class="bg4">
+							这是左侧；<br />
+							定宽100px；<br />
+							position为absolute；<br />
+							top=顶部height+父容器padding-top；<br />
+							left=父容器padding-left；<br />
+							bottom=父容器padding-bottom；
+						</div>
+						<div style="position: absolute;top: 115px;bottom: 5px;left: 205px;right: 5px;overflow: auto;" class="bg2">
+							这是右侧；<br />
+							宽度自适应<br />
+							position为absolute；<br />
+							top=顶部height+父容器padding-top；<br />
+							left=左侧width+父容器padding-left；<br />
+							bottom为父容器padding-bottom；<br />
+							right为父容器padding-right;
+							<div style="height: 600px;color: red;">
+								这是子容器，测试是否出现滚动条
+							</div>
 						</div>
 					</div>
 				</div>
