@@ -120,6 +120,7 @@ ul{
 }
 .section{
 	padding: 0.6rem;
+	overflow-x: hidden;
 }
 .section h1{
 	border-bottom: 1px solid #EEEEEE;
