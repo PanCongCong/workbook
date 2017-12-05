@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+	</head>
+	<body>
+		<div class="side">
+			<ul>
+				<li>
+					<a href="#part1">黑白图像</a>
+				</li>
+				<li>
+					<a href="#part2">页面顶部阴影</a>
+				</li>
+				<li>
+					<a href="#part3">空链接</a>
+				</li>
+				<li>
+					<a href="#part4">禁用鼠标事件</a>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="content">
+			<div class="section" id="part1">
+				<h1>黑白图像</h1>
+				<p class="code">
+					img.desaturate{<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;filter:grayscale(1);<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;-webkit-filter:grayscale(1);<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;-moz-filter:grayscale(1);<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;-ms-filter:grayscale(1);<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;-o-filter:grayscale(1);<br />
+					}
+				</p>
+				<div class="demo">
+					<img src="demo1.jpg" style="height: 100px;"/>
+					<img src="demo1.jpg" style="height:100px;filter: grayscale(1);-webkit-filter:grayscale(1);"/>
+				</div>
+			</div>
+			<div class="section" id="part2">
+				<h1>页面顶部阴影</h1>
+				<p class="code">
+					body:before{<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;content:"";<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;position:fixed;<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;top:-10px;left:0;width:100%;height:10px;<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;box-shadow:0px 0px 0px rgba(0,0,0,.8)<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;z-index:100<br />
+					}
+				</p>
+			</div>
+			<div class="section" id="part3">
+				<h1>使用属性选择器用于空链接</h1>
+				<p class="code">
+					a[href^="http"]:empty::before{<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;content:attr(href);<br />
+					}
+				</p>
+				<div class="demo">
+					<a href="http://www.baidu.com"></a>
+				</div>
+			</div>
+			<div class="section" id="part4">
+				<h1>禁用鼠标事件</h1>
+				<p class="code">
+					.disabled{<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;pointer-events:none;<br />
+					}<br />
+					<br />
+					CSS3新增的pointer-events能够禁用元素的鼠标事件。(IE9+)
+				</p>
+				<div class="demo">
+					<a href="http://www.baidu.com" class="disabled">无法点击的超链接</a><br />
+					<input type="text" name="" id="" value="无法点击的文本框" class="disabled" /><br />
+					<select name="" class="disabled">
+						<option value="">无法选择</option>
+					</select>
+				</div>
+			</div>
+			<div class="section" id="part5">
+				<h1>模糊文本</h1>
+				<p class="code">
+					.blur{<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;color:transparent;<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;text-shadow:0 0 5px rgba(0,0,0,0.5);<br />
+					}<br />
+				</p>
+				<div class="demo">
+					<span class="blur">
+						这是一段模糊的文字
+					</span>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
