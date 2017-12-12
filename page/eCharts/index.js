@@ -5,13 +5,13 @@ window.onload = function() {
 
 	function generateData(theta, min, max) {
 		var data = [];
-		for(var i = 0; i <= 40; i++) {
-			for(var j = 0; j <= 40; j++) {
-				for(var k = 0; k <= 40; k++) {
+		for(var i = 0; i <= 20; i++) {
+			for(var j = 0; j <= 20; j++) {
+				var value = Math.random();
+				for(var k = 0; k <= 20; k++) {
 					//var value = noise.noise3D(i / 20, j / 20, k / 20);
-					var value = Math.random();
-					valMax = Math.max(valMax, value);
-					valMin = Math.min(valMin, value);
+					valMax = Math.max(max, value);
+					valMin = Math.min(min, value);
 					data.push([i, j, k, value * 2 + 4]);
 				}
 			}
@@ -25,7 +25,7 @@ window.onload = function() {
 	console.log(data);
 	var option = {
 		visualMap: {
-			show: false,
+			show: true,
 			min: 2,
 			max: 6,
 			inRange: {
@@ -51,12 +51,15 @@ window.onload = function() {
 				lineStyle: { color: '#fff' }
 			},
 			viewControl: {
-				// autoRotate: true
+				 autoRotate: true
 			}
 		},
 		series: [{
+			name:'test',
 			type: 'scatter3D',
-			data: data
+			symbol:"rect",
+			data: data,
+			silent:false
 		}]
 	};
 
