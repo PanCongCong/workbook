@@ -1,12 +1,19 @@
 [
 	{
 		"key": "#layout",
+		"name":"布局",
 		"url": "page/layout/index.html"
 	}, {
 		"key": "#ES6",
+		"name":"ES6",
 		"url": "page/ES6/index.html"
 	}, {
 		"key": "#CSS",
+		"name":"CSS小技巧",
 		"url": "page/CSS/index.html"
+	},{
+		"key":"#Animation",
+		"name":"动画",
+		"url":"page/animation/index.html"
 	}
 ]

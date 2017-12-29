@@ -42,7 +42,6 @@ h2{
 a{
 	text-decoration: none;
 	color: inherit;
-	
 }
 a[href^="http"]:empty::before{
 	content:attr(href);
@@ -107,6 +106,7 @@ ul{
 	color: #fff;
 	font-size: 1rem;
 	padding-right: 1rem;
+	width: 6rem;
 }
 .header .toolbar{
 	font-size: 0.8rem;

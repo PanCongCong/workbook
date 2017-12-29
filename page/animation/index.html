@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css" />
+		<style type="text/css">
+			.demoRB {
+				width: 150px;
+				height: 50px;
+				display: inline-block;
+				margin: 5px;
+				border: 1px solid #6699CC;
+				text-align: center;
+				line-height: 50px;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="side">
+			<ul>
+				<li>
+					<a href="#part1">Transition 过渡</a>
+				</li>
+				<li>
+					<a href="#part2">Animation 动画</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="content">
+			<div class="section" id="part1">
+				<h1>Transition 过渡</h1>
+
+				<h2>简介</h2>
+				<p>Transition描述了css状态变化所需要的时间，以及延迟时间、变化速度模式等</p>
+				<div class="code">
+					img{<br /> &nbsp;&nbsp;&nbsp;&nbsp;transition: 1s height;<br /> }
+					<br />
+				</div>
+
+				<h2>注意事项</h2>
+				<p>1）&nbsp;IE10+，目前都支持无前缀使用</p>
+				<p>2）&nbsp;大部分css属性都支持transition，参考
+					<a target="_blank" href="http://oli.jp/2010/css-animatable-properties/"></a>
+				</p>
+				<p>3）&nbsp;transition是根据开始状态和结束状态的数值，计算出中间状态。故若其中一个非明确值，则无过渡效果。如height:auto等</p>
+				<div class="demo">
+					<style type="text/css">
+						.demo1 div {
+							transition: 0.5s height;
+							cursor: pointer;
+						}
+						
+						.demo1:hover div {
+							height: 100px !important;
+						}
+					</style>
+					<div class="demo1">
+						<p>鼠标移动到这里试一下~</p>
+						<div class="bg1" style="height: auto;width: 40%;display: inline-block;">这个div的高度为auto</div>
+						<div class="bg2" style="height: 25px;width: 40%;display: inline-block;">这个div的高度为25px</div>
+					</div>
+				</div>
+
+				<h2>transition-delay</h2>
+				<p>当第二个参数也是时间时，代表延迟的时间</p>
+				<div class="code">
+					div{<br /> &nbsp;&nbsp;&nbsp;&nbsp;transition: 1s width,1s 1s height;<br /> }
+				</div>
+				<div class="demo">
+					<style type="text/css">
+						.demo2:hover div {
+							width: 40% !important;
+							height: 100px !important;
+						}
+					</style>
+					<div class="demo2">
+						<div class="bg1" style="height: 25px;width: 20%;transition: 0.5s width,0.5s height;display: inline-block;">
+							这个div无延迟
+						</div>
+						<div class="bg2" style="height: 25px;width: 20%;transition: 0.5s width,0.5s 0.5s height;display: inline-block;">
+							这个div有延迟
+						</div>
+					</div>
+				</div>
+
+				<h2>transition-timing-function</h2>
+				<p>
+					状态变化速度，默认是ease<br /> 1）linear：匀速
+					<br /> 2）ease：慢快慢
+					<br /> 3）ease-in：加速
+					<br /> 4）ease-out：减速
+					<br /> 5）ease-in-out：慢快慢
+					<br /> 6）step：直接在开始或者结束
+					<br /> 7）cubic-bezier：自定义速度模式，参考
+					<a target="_blank" href="http://cubic-bezier.com"></a>
+				</p>
+				<div class="demo">
+					<style type="text/css">
+						.demo3 div {
+							position: relative;
+							left: 0px;
+							width: 100px;
+							height: 50px;
+							margin: 5px 0;
+						}
+						
+						.demo3:hover div {
+							left: 300px;
+						}
+					</style>
+					<div class="demo3">
+						<div class="bg1" style="transition: 3s left linear;">linear</div>
+						<div class="bg2" style="transition: 3s left ease;">ease</div>
+						<div class="bg2" style="transition: 3s left ease-in;">ease-in</div>
+						<div class="bg2" style="transition: 3s left ease-out;">ease-out</div>
+						<div class="bg2" style="transition: 3s left ease-in-out;">ease-in-out</div>
+						<div class="bg3" style="transition: 3s left step-start;">step-start</div>
+						<div class="bg3" style="transition: 3s left step-end;">step-end</div>
+					</div>
+				</div>
+
+				<h2>写法</h2>
+				<p>完整写法：&nbsp;&nbsp;&nbsp;transition: 1s 2s height ease</p>
+				<p>
+					单独定义：<br /> transition-property: height;<br /> transition-duration: 1s;<br /> transition-delay: 2s;<br /> transition-timing-function: ease;
+				</p>
+			</div>
+			<div class="section" id="part2">
+				<h1>Animation 动画</h1>
+				<h2>简介</h2>
+				<p>
+					animation需要指定一个动画的持续时间，以及动画名称<br /> transition描述了css属性状态改变时的过渡；而animation直接定义了一段动画。
+				</p>
+				<div class="code">
+					div{<br /> &nbsp;&nbsp;&nbsp;&nbsp;animation:1s rainbow;<br /> }
+					<br /> @keyframes rainbow{<br /> &nbsp;&nbsp;&nbsp;&nbsp;0% { background:red }<br /> &nbsp;&nbsp;&nbsp;&nbsp;50% { background:yellow }<br /> &nbsp;&nbsp;&nbsp;&nbsp;100%{ background:green }<br /> }
+				</div>
+				<h2>animation-iteration-count 播放次数</h2>
+				<p>默认情况下，动画只会播放一次。加入infinite关键字可以无限次播放</p>
+				<div class="code">
+					div:hover{<br /> &nbsp;&nbsp;&nbsp;&nbsp;animation:2s rainbow infinite;<br /> }
+					<br />
+				</div>
+				<div class="demo">
+					<style type="text/css">
+						.demo4 {
+							width: 100px;
+							height: 100px;
+							border: 1px solid #669999;
+						}
+						
+						.demo4:hover {
+							animation: 2s demoRB1 infinite;
+						}
+						
+						@keyframes demoRB1 {
+							0% {
+								background: red
+							}
+							50% {
+								background: yellow
+							}
+							100% {
+								background: green
+							}
+						}
+					</style>
+					<div class="demo4"></div>
+				</div>
+				<p>也可以指定播放次数：</p>
+				<div class="code">
+					div:hover{<br /> &nbsp;&nbsp;&nbsp;&nbsp;animation:1s rainbow 2;<br /> }
+					<br />
+				</div>
+				<div class="demo">
+					<style type="text/css">
+						.demo5 {
+							width: 100px;
+							height: 100px;
+							border: 1px solid #669999;
+						}
+						
+						.demo5:hover {
+							animation: 1s demoRB1 2;
+						}
+					</style>
+					<div class="demo5"></div>
+				</div>
+				<h2>animation-fill-mode 结束状态</h2>
+				<p>默认情况下，动画结束后会立刻跳回结束状态，通过animation-fill-mode可以改变停留的行为，有以下几个可选项：</p>
+				<p>
+					1）none。默认值，回到动画开始的状态<br /> 2）backwards。让动画回到第一帧的状态。
+					<br /> 3）forwads。让动画停留在最终状态。
+					<br /> 4）both。根据animation-direction轮流应用forwards和backwards规则。
+				</p>
+				<div class="demo">
+					<style type="text/css">
+						.demo:hover .demo6 {
+							animation: 2s 0.5s demoRB2;
+						}
+						
+						.demo:hover .demo7 {
+							animation: 2s 0.5s demoRB2 backwards;
+						}
+						
+						.demo:hover .demo8 {
+							animation: 2s 0.5s demoRB2 forwards;
+						}
+						
+						.demo:hover .demo9 {
+							animation: 2s 0.5s demoRB2 both;
+						}
+						
+						@keyframes demoRB2 {
+							0% {
+								height: 50px;
+							}
+							50% {
+								height: 80px
+							}
+							100% {
+								height: 100px
+							}
+						}
+					</style>
+					<div class="demoRB demo6 bg1">none</div>
+					<div class="demoRB demo7 bg1">backwards</div>
+					<div class="demoRB demo8 bg2">forwads</div>
+					<div class="demoRB demo9 bg2">both</div>
+				</div>
+
+				<h2>animation-direction 循环播放规则</h2>
+				<p>动画循环播放时，每次都是从结束状态跳回到开始状态，通过此属性可以改变这一行为</p>
+				<div class="demo" style="height: 300px;">
+					<style type="text/css">						
+						.demo:hover .demo10 {
+							animation: 2s 0.5s demoRB2 infinite normal;
+						}
+						
+						.demo:hover .demo11 {
+							animation: 2s 0.5s demoRB2 infinite alternate;
+						}
+						
+						.demo:hover .demo12 {
+							animation: 2s 0.5s demoRB2 infinite reverse;
+						}
+						
+						.demo:hover .demo13 {
+							animation: 2s 0.5s demoRB2 infinite alternate-reverse;
+						}
+						
+						.demo:hover .demo14 {
+							animation: 2s 0.5s demoRB2 infinite both normal;
+						}
+						
+						.demo:hover .demo15 {
+							animation: 2s 0.5s demoRB2 infinite both alternate;
+						}
+						
+						.demo:hover .demo16 {
+							animation: 2s 0.5s demoRB2 infinite both reverse;
+						}
+						
+						.demo:hover .demo17 {
+							animation: 2s 0.5s demoRB2 infinite both alternate-reverse;
+						}
+					</style>
+					<div class="demoRB demo10 bg1">normal</div>
+					<div class="demoRB demo12 bg1">reverse</div>
+					<div class="demoRB demo11 bg2">alternate</div>
+					<div class="demoRB demo13 bg2">alternate-reverse</div>
+					<br />
+					both
+					<br />
+					<div class="demoRB demo14 bg1">normal</div>
+					<div class="demoRB demo15 bg1">reverse</div>
+					<div class="demoRB demo16 bg2">alternate</div>
+					<div class="demoRB demo17 bg2">alternate-reverse</div>
+					
+					<h2></h2>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
